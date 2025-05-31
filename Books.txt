@@ -1,0 +1,4 @@
+Mat, Mar, Luk, Jhn, Act, Rom, 1Co, 2Co, Gal, Eph, Phl, Col, 1Th, 2Th, 1Ti,
+2Ti, Heb, Jas, 1Pe, 2Pe, 1Jo, Jde, Rev, 1Ch, 1Ki, 1Sa, 2Ch, 2Ki, 2Sa, Amo,
+Dan, Deu, Ecc, Est, Exo, Eze, Gen, Hab, Hag, Hos, Isa, Jdg, Jer, Job, Joe,
+Jon, Jos, Lam, Lev, Mal, Mic, Nah, Neh, Num, Pro, Psa, Zec, Zep

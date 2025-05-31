@@ -1,0 +1,55 @@
+
+'''
+Suppose a file of semicolon-delimited lines has lines of the form “'Mat
+21:42';'Psa 118:22,29';'';''”. The first and second fields consist of one or more Bible verses
+separated by commas. Expand lines with more than one verse into multiple lines,
+one for each of the verses. So the above example would become two lines, “'Mat
+21:42';'Psa 118:22';'';'’" and ‘“Mat 21:42”;'Psa 118:29';'';’'".
+
+We need to define the format of fields one and two. They are a comma-separated
+list of Bible verse references. A Bible verse reference begins with a book name,
+space, chapter number, colon, verse or range of verses. The second and following verses
+will omit the book name if it is the same as the first book name, and will omit
+the chapter number and colon if it is the same as the first chapter number. 
+
+Valid book names are: Mat, Mar, Luk, Jhn, Act, Rom, 1Co, 2Co, Gal, Eph, Phl,
+Col, 1Th, 2Th, 1Ti, 2Ti, Heb, Jas, 1Pe, 2Pe, 1Jo, Jde, Rev, 1Ch, 1Ki, 1Sa, 2Ch,
+2Ki, 2Sa, Amo, Dan, Deu, Ecc, Est, Exo, Eze, Gen, Hab, Hag, Hos, Isa, Jdg, Jer,
+Job, Joe, Jon, Jos, Lam, Lev, Mal, Mic, Nah, Neh, Num, Pro, Psa, Zec, Zep.
+
+The first line of the input file is a header and should be skipped. Also a verse
+may be a range, expressed as two numbers separated by a hyphen. E.g., in “‘Rev
+21:2’;‘Eze 40:1-49,48:1-35’;’’;’†’” the second field contains two verses,
+“Eze 40:1-49” and “Eze 48:1-35”
+
+Take the file names from the command line.
+
+'''
+
+A file called a referenceFile contains semicolon-delimited lines each called a referenceLine.
+The features of these lines are described by the following grammar:
+    referenceLine = referenceList;referenceList;allusionMarker;possibleAllusionMarker
+    referenceList = bookName chapterRange 
+    chapterRange  = integer:verseRangeList | integer-integer | integer
+    verseRangeList = verseRangeList,verseRange | verseRange
+    verseRange = integer-integer | integer
+    allusionMarker = '*' | ''
+    possibleAllusionMarker = '†' | ''
+    bookName = 
+        Mat | Mar | Luk | Jhn | Act | Rom | 1Co | 2Co | Gal | Eph | Phl,
+        Col | 1Th | 2Th | 1Ti | 2Ti | Heb | Jas | 1Pe | 2Pe | 1Jo | Jde | Rev | 1Ch | 1Ki | 1Sa | 2Ch,
+        2Ki | 2Sa | Amo | Dan | Deu | Ecc | Est | Exo | Eze | Gen | Hab | Hag | Hos | Isa | Jdg | Jer,
+        Job | Joe | Jon | Jos | Lam | Lev | Mal | Mic | Nah | Neh | Num | Pro | Psa | Zec | Zep
+
+The first line of a referenceFile is a header line which should be ignored.
+
+Write a Python program that tests the lines of a referenceFile and indicates whether or not it is a valid
+referenceLine. The name of the referenceFile should be taken from the command line. Include test cases.
+Here are some examples of a valid referenceLine:
+
+'Act 7:33-34';'Exo 3:5,7-8,10';'';''
+'Act 7:35';'Exo 2:14';'';''
+'Act 7:35';'Exo 3:15-18';'*';''
+'Act 7:36';'Exo 7:1-12:51';'*';''
+'Act 7:36';'Exo 14:21';'*';''
+
